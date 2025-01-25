@@ -3,7 +3,8 @@ package telran;
 import telran.actors.MsgConsumer;
 import telran.actors.MsgProducer;
 import telran.mediation.BlkQueue;
-import telran.mediation.BlkQueueImpl;
+//import telran.mediation.BlkQueueImpl;
+import telran.mediation.BlkQueueImplV2;
 
 public class ProducerConsumeAppl {
     private static final int N_MESSAGES = 50;
@@ -13,7 +14,7 @@ public class ProducerConsumeAppl {
     private static final int QUEUE_MAX_SIZE = 10;
 
     public static void main(String[] args) throws InterruptedException {
-        BlkQueue<String> blkQueue = new BlkQueueImpl<>(QUEUE_MAX_SIZE);
+        BlkQueue<String> blkQueue = new BlkQueueImplV2<>(QUEUE_MAX_SIZE);
         MsgProducer sender = new MsgProducer(blkQueue, N_MESSAGES, MSG_SEND_INTERVAL_MILLIS);
         sender.start();
         for (int i = 0; i < N_CONSUMERS; i++) {
