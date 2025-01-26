@@ -42,6 +42,7 @@ public class BlkQueueImplV2<T> implements BlkQueue<T>{
                 notEmpty.await();
             }
             T message = buffer[head];
+            buffer[head] = null;
             head = (head + 1) % buffer.length;
             size--;
             notFull.signal();
